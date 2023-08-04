@@ -32,7 +32,7 @@ const cssStyles = `
   color:#fff;
   border:none;
   font-weight:700;
-  transition: all ease-in-out .3s;
+  transition: transform ease-in-out .3s;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   border-radius:10px;
   cursor:pointer;
@@ -166,19 +166,11 @@ document.body.appendChild(popup);
 // fix
 popup.style.display = "none";
 
-
-let isLongPressing = false;
-
-button.addEventListener("click", function () {
-  if (popup.style.display === "none") {
-    popup.style.display = "block";
-  } else {
-    popup.style.display = "none";
-  }
-});
+// button.addEventListener("click", function () {});
 
 button.addEventListener("mousedown", function () {
   isLongPressing = true;
+  buttonMoved = false; // Reset the buttonMoved flag
   setTimeout(function () {
     if (isLongPressing) {
       document.addEventListener("mousemove", followMouse);
@@ -187,11 +179,22 @@ button.addEventListener("mousedown", function () {
 });
 
 document.addEventListener("mouseup", function () {
-  isLongPressing = false;
-  document.removeEventListener("mousemove", followMouse);
+  if (isLongPressing) {
+    isLongPressing = false;
+    document.removeEventListener("mousemove", followMouse);
+
+    if (!buttonMoved) {
+      if (popup.style.display === "none") {
+        popup.style.display = "block";
+      } else {
+        popup.style.display = "none";
+      }
+    }
+  }
 });
 
 function followMouse(event) {
   const mouseY = event.clientY;
   button.style.bottom = `${window.innerHeight - mouseY}px`;
+  buttonMoved = true; // Set the flag to true when the button is moved
 }
