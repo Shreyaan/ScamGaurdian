@@ -162,12 +162,12 @@ popup.innerHTML = `
 popup.id = "myExtensionPopup";
 document.body.appendChild(popup);
 
-
-
-// Show/hide the popup when the button is clicked
 //bug - popup is not showing on first click
 // fix
 popup.style.display = "none";
+
+
+let isLongPressing = false;
 
 button.addEventListener("click", function () {
   if (popup.style.display === "none") {
@@ -176,3 +176,22 @@ button.addEventListener("click", function () {
     popup.style.display = "none";
   }
 });
+
+button.addEventListener("mousedown", function () {
+  isLongPressing = true;
+  setTimeout(function () {
+    if (isLongPressing) {
+      document.addEventListener("mousemove", followMouse);
+    }
+  }, 500); // Adjust the delay as needed
+});
+
+document.addEventListener("mouseup", function () {
+  isLongPressing = false;
+  document.removeEventListener("mousemove", followMouse);
+});
+
+function followMouse(event) {
+  const mouseY = event.clientY;
+  button.style.bottom = `${window.innerHeight - mouseY}px`;
+}
