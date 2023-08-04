@@ -4,7 +4,21 @@ button.innerHTML = "SG";
 
 button.id = "myExtensionButton";
 
-document.body.appendChild(button);
+let currentUrl = window.location.href;
+
+function addButtonToWebsites(websiteNames) {
+  const currentUrl = window.location.href;
+
+  for (const name of websiteNames) {
+    if (currentUrl.includes(name)) {
+      document.body.appendChild(button);
+    }
+  }
+}
+
+// Usage
+const websitesToCheck = ["amazon", "ebay", "anosher"]; // Add more website names as needed
+addButtonToWebsites(websitesToCheck);
 
 const cssStyles = `
 #myExtensionButton {
@@ -97,7 +111,7 @@ const cssStyles = `
   text-decoration:underline;
 }
 
-.border{
+#myExtensionPopup .border{
   border:0.5px solid lightgray;
   width:100%;
 }
@@ -148,7 +162,13 @@ popup.innerHTML = `
 popup.id = "myExtensionPopup";
 document.body.appendChild(popup);
 
+
+
 // Show/hide the popup when the button is clicked
+//bug - popup is not showing on first click
+// fix
+popup.style.display = "none";
+
 button.addEventListener("click", function () {
   if (popup.style.display === "none") {
     popup.style.display = "block";
