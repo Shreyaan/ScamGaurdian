@@ -1,3 +1,4 @@
+[![Create Release and Upload ZIP](https://github.com/Shreyaan/ScamGaurdian/actions/workflows/main.yml/badge.svg)](https://github.com/Shreyaan/ScamGaurdian/actions/workflows/main.yml)
 # ScamGuardian
 
 Step 1: download the zip from here https://github.com/Shreyaan/ScamGaurdian/releases/latest/download/dist.zip
