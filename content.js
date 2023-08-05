@@ -3,6 +3,12 @@ let button = document.createElement("button");
 button.innerHTML = "SG";
 
 button.id = "myExtensionButton";
+// Create the popup (initially hidden)
+let popup = document.createElement("div");
+
+
+
+popup.id = "myExtensionPopup";
 
 // Get the current URL
 let currentUrl = window.location.href;
@@ -33,6 +39,8 @@ function addButtonToWebsites() {
       if (data) {
         if (data.risks.length > 0 || data.tips.length > 0) {
           document.body.appendChild(button);
+          popup.innerHTML = generatePopUpHTML(vendorInfo);
+          document.body.appendChild(popup);
         }
       }
     })
@@ -40,7 +48,6 @@ function addButtonToWebsites() {
       console.error(error);
     });
 }
-
 
 addButtonToWebsites();
 
@@ -65,9 +72,9 @@ const cssStyles = `
   transform:scale(1.2);
 }
 #myExtensionPopup{
-  min-width:300px;
-  width:auto;
+  width:25vw;
   height:auto;
+  max-height: 80vh;
   right:4rem;
   top:1rem;
   border:1px solid #000;
@@ -76,11 +83,11 @@ const cssStyles = `
   z-index:10000;
   background-color:#fff;
   display:none;
+  overflow-y: scroll;
 }
 #myExtensionPopup .header{
   background:#0F69D2;
-  min-width:300px;
-  width:auto;
+   width:25vw;
   color:white;
   text-align:center;
   font-weight:700;
@@ -151,41 +158,6 @@ function injectCSS(cssStyles) {
 // Inject the CSS styles
 injectCSS(cssStyles);
 
-// Create the popup (initially hidden)
-let popup = document.createElement("div");
-popup.innerHTML = `
-    <div>
-    <div class='header'>
-      <h1>Scam Guardian</h1>
-    </div>
-
-    <section>
-
-    <p class="riskText">Risks</p>
-
-    <ul class='listItem'>
-     <li class='list riskList'>This is risk</li>
-     <li class='list riskList'>This is risk</li>
-     <li class='list riskList'>This is risk</li>
-    </ul>
-
-    <div class='border'></div>
-
-    <p class="tipsText">Tips</p>
-
-    <ul class="listItem">
-      <li class='list tipsList'>This is tips</li>
-      <li class='list tipsList'>This is tips</li>
-      <li class='list tipsList'>This is tips</li>
-    </ul>
-
-    </section>
-    </div>
-`;
-
-popup.id = "myExtensionPopup";
-document.body.appendChild(popup);
-
 //bug - popup is not showing on first click
 // fix
 popup.style.display = "none";
@@ -250,4 +222,37 @@ function followMouse(event) {
   const mouseY = event.clientY;
   button.style.bottom = `${window.innerHeight - mouseY}px`;
   buttonMoved = true; // Set the flag to true when the button is moved
+}
+
+
+function generatePopUpHTML(data) {
+  return `
+  <div>
+  <div class='header'>
+    <h1>Scam Guardian</h1>
+  </div>
+
+  <section>
+
+  <p class="riskText">Risks</p>
+
+  <ul class='listItem'>
+   <li class='list riskList'>${data.risks[0]}</li>
+   <li class='list riskList'>${data.risks[1]}</li>
+   <li class='list riskList'>${data.risks[2]}</li>
+  </ul>
+
+  <div class='border'></div>
+
+  <p class="tipsText">Tips</p>
+
+  <ul class="listItem">
+    <li class='list tipsList'>${data.tips[0]}</li>
+    <li class='list tipsList'>${data.tips[1]}</li>
+    <li class='list tipsList'>${data.tips[2]}</li>
+  </ul>
+
+  </section>
+  </div>
+`;
 }
