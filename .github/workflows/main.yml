@@ -3,7 +3,7 @@ name: Create Release and Upload ZIP
 on:
   push:
     branches:
-      - master # You can replace 'master' with the branch you want to trigger the workflow
+      - main # You can replace 'master' with the branch you want to trigger the workflow
 
 jobs:
   build:
