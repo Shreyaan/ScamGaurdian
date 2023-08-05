@@ -1,7 +1,7 @@
 import { setButtonBehaviour } from "./setButtonBehaviour.js";
-import { cssStyles } from "./cssStyles.js";
 import { generatePopUpHTML } from "./generatePopUpHTML.js";
 import { getVendorInfo } from "./getVendorInfo.js";
+import { injectCSS } from "./cssStyles.js";
 
 export let button = document.createElement("button");
 button.innerHTML = "SG";
@@ -15,9 +15,7 @@ popup.id = "myExtensionPopup";
 // Get the current URL
 let currentUrl = window.location.href;
 
-getVendorInfo(currentUrl);
 let vendorInfo = {};
-
 
 function addButtonToWebsites() {
   getVendorInfo(currentUrl)
@@ -39,14 +37,7 @@ function addButtonToWebsites() {
 
 addButtonToWebsites();
 
-function injectCSS(cssStyles) {
-  const styleElement = document.createElement("style");
-  styleElement.textContent = cssStyles;
-  document.head.appendChild(styleElement);
-}
-
-// Inject the CSS styles
-injectCSS(cssStyles);
+injectCSS();
 
 //bug - popup is not showing on first click
 // fix

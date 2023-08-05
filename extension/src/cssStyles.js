@@ -1,4 +1,4 @@
-export const cssStyles = `
+const cssStyles = `
 #myExtensionButton {
   position:fixed;
   right:10px;
@@ -95,3 +95,9 @@ export const cssStyles = `
 }
 
 `;
+
+export function injectCSS() {
+  const styleElement = document.createElement("style");
+  styleElement.textContent = cssStyles;
+  document.head.appendChild(styleElement);
+}

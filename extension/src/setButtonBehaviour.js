@@ -6,6 +6,15 @@ export function setButtonBehaviour() {
   let lastClickTime = 0; // track the last click time
   let buttonMovedState = false; // track if the button is currently moved
 
+  const savedButtonState = localStorage.getItem('buttonMovedState-extension');
+  if (savedButtonState === 'true') {
+    button.style.right = "-40px";
+    buttonMovedState = true;
+  } else {
+    button.style.right = "10px";
+    buttonMovedState = false;
+  }
+
   button.addEventListener("click", function (event) {
     const currentTime = new Date().getTime();
     if (currentTime - lastClickTime <= 300) {
@@ -16,7 +25,7 @@ export function setButtonBehaviour() {
         buttonMovedState = false;
       } else {
         // Move the button to the right
-        button.style.right = "-50px";
+        button.style.right = "-40px";
         buttonMovedState = true;
       }
       button.style.transition = "right 0.5s";
@@ -26,6 +35,8 @@ export function setButtonBehaviour() {
     }
     lastClickTime = currentTime;
     event.preventDefault(); // Prevent default behavior of double-click
+    localStorage.setItem('buttonMovedState', buttonMovedState);
+
   });
 
   button.addEventListener("mousedown", function () {
