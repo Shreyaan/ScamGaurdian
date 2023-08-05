@@ -19,13 +19,18 @@ jobs:
           node-version: 14 # Specify a Node.js version
 
       - name: Install Dependencies
-        run: cd extension && npm ci
+        run: |
+          cd extension
+          npm ci
 
       - name: Build
-        run: npm run build
+        run: |
+          cd extension
+          npm run build
 
       - name: Create ZIP File
         run: |
+          cd extension
           zip -r dist.zip dist
 
       - name: Create Release
