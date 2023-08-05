@@ -1,11 +1,10 @@
 import React from "react";
-import img from "../../assets/section.png";
 
 const Info = () => {
   return (
     <div className="container mt-36 flex relative mb-10">
       <div className="img flex-1">
-        <img src={img} alt="img" className="aspect-video w-full" />
+        <img src={"assets/section.png"} alt="img" className="aspect-video w-full" />
       </div>
       <div className="textContainer flex-1 flex flex-col justify-center h-[23rem] z-10 bg-[#DFDFDF] p-10 -translate-x-40 -mr-40 translate-y-10">
         <div className="text">

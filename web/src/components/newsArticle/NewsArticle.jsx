@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import Link from 'next/link'
+
 import datas from "./data";
 
 const NewsArticle = () => {
@@ -14,7 +15,7 @@ const NewsArticle = () => {
             key={data.id}
           >
             <img src={data.imageSrc} alt="img" />
-            <Link to={data.link} className="underline underline-offset-1">
+            <Link href={data.link} className="underline underline-offset-1">
               {data.title}
             </Link>
           </div>

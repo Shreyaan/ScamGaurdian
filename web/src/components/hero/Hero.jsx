@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import heroImg from "../../assets/headerImg.png";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -18,7 +17,7 @@ const Hero = () => {
         </div>
         <div className="mt-5">
           <Link
-            to="#"
+            href="#"
             className="bg-black text-white p-2 font-semibold cursor-pointer"
           >
             Download Extension
@@ -27,7 +26,11 @@ const Hero = () => {
       </div>
 
       <div className="img w-[50rem] h-[43rem]">
-        <img src={heroImg} alt="heroImg" className="aspect-[16/11] w-full" />
+        <img
+          src={"assets/headerImg.png"}
+          alt="heroImg"
+          className="aspect-[16/11] w-full"
+        />
       </div>
     </main>
   );
