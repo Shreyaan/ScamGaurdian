@@ -4,21 +4,45 @@ button.innerHTML = "SG";
 
 button.id = "myExtensionButton";
 
+// Get the current URL
 let currentUrl = window.location.href;
 
-function addButtonToWebsites(websiteNames) {
-  const currentUrl = window.location.href;
+getVendorInfo(currentUrl);
+let vendorInfo = {};
+async function getVendorInfo(url) {
+  try {
+    let hostname = new URL(url).hostname;
+    let vendorName = hostname.split(".")[1];
+    let apiUrl = `https://db-test-lyart.vercel.app/api/vendor?vendorName=${vendorName}`;
 
-  for (const name of websiteNames) {
-    if (currentUrl.includes(name)) {
-      document.body.appendChild(button);
-    }
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    // Handle errors
+    console.error("Error:", error);
+    throw error;
   }
 }
 
-// Usage
-const websitesToCheck = ["amazon", "ebay", "anosher"]; // Add more website names as needed
-addButtonToWebsites(websitesToCheck);
+function addButtonToWebsites() {
+  getVendorInfo(currentUrl)
+    .then((data) => {
+      console.log(data);
+      vendorInfo = data;
+      if (data) {
+        if (data.risks.length > 0 || data.tips.length > 0) {
+          document.body.appendChild(button);
+        }
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+
+addButtonToWebsites();
 
 const cssStyles = `
 #myExtensionButton {
@@ -215,11 +239,11 @@ document.addEventListener("mouseup", function () {
 });
 
 function togglePopup() {
-    if (popup.style.display === "none") {
-        popup.style.display = "block";
-    } else {
-        popup.style.display = "none";
-    }
+  if (popup.style.display === "none") {
+    popup.style.display = "block";
+  } else {
+    popup.style.display = "none";
+  }
 }
 
 function followMouse(event) {
