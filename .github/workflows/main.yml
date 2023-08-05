@@ -3,7 +3,7 @@ name: Create Release and Upload ZIP
 on:
   push:
     branches:
-      - main # You can replace 'master' with the branch you want to trigger the workflow
+      - main # You can replace 'main' with the branch you want to trigger the workflow
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14 # Specify a Node.js version
+          node-version: 16
 
       - name: Install Dependencies
         run: |
