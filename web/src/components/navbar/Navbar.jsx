@@ -7,7 +7,7 @@ const Navbar = () => {
       <h1 className="font-bold text-2xl font-sans ml-2">Scam Guardian</h1>
 
       <Link
-        href="https://github.com/Co-Lab-You-Belong-in-Tech/ScamGuardian/tree/main#readme"
+        href="https://github.com/Shreyaan/ScamGaurdian#scamguardian"
         className="mr-2 bg-blue-600 bg-opacity-100 p-2 hover:scale-95 cursor-pointer duration-75"
       >
         Download Extension
