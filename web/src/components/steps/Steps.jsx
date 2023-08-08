@@ -2,7 +2,7 @@ import React from "react";
 
 const Steps = () => {
   return (
-    <div className="bg-[#0F69D2] mb-4 text-white max-w-2xl flex flex-col p-6 py-16">
+    <div className="bg-[#0F69D2] mb-20 mt-20 text-white max-w-2xl flex flex-col items-center justify-center p-6 py-16 ">
       <div className="textContainer max-w-sm">
         <h3 className="text-3xl font-bold mb-1">How Extension Works ?</h3>
         <p className="my-3 before:content-['Step-1:-'] before:font-bold before:underline before:underline-offset-1">

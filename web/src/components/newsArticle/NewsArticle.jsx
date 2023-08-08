@@ -1,17 +1,17 @@
 import React from "react";
 
-import Link from 'next/link'
+import Link from "next/link";
 
 import datas from "./data";
 
 const NewsArticle = () => {
   console.log(datas);
   return (
-    <article className="container flex translate-y-32 gap-7 p-5 mb-5">
+    <article className="container flex translate-y-32 gap-7 p-5 mb-5 ">
       {datas.map((data, key) => {
         return (
           <div
-            className="news bg-black text-white p-1 rounded-md"
+            className="news bg-black text-white p-4 rounded-sm"
             key={data.id}
           >
             <img src={data.imageSrc} alt="img" />

@@ -5,9 +5,7 @@ const Pros = () => {
   console.log("ProsData", data);
   return (
     <div>
-      <h1 className="text-center font-bold text-4xl underline underline-offset-1">
-        Why Scam Guardian ?
-      </h1>
+      <h1 className="text-center font-bold text-4xl">Why Scam Guardian?</h1>
 
       <div className="flex justify-center gap-4 mt-8">
         {data.map((data, key) => {
