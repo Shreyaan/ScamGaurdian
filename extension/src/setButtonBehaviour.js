@@ -6,8 +6,9 @@ export function setButtonBehaviour() {
   let lastClickTime = 0; // track the last click time
   let buttonMovedState = false; // track if the button is currently moved
 
-  const savedButtonState = localStorage.getItem('buttonMovedState-extension');
-  if (savedButtonState === 'true') {
+  const savedButtonState = getButtonSavedState();
+  console.log(savedButtonState);
+  if (savedButtonState === true) {
     button.style.right = "-40px";
     buttonMovedState = true;
   } else {
@@ -35,8 +36,7 @@ export function setButtonBehaviour() {
     }
     lastClickTime = currentTime;
     event.preventDefault(); // Prevent default behavior of double-click
-    localStorage.setItem('buttonMovedState', buttonMovedState);
-
+    saveButtonState(buttonMovedState);
   });
 
   button.addEventListener("mousedown", function () {
@@ -73,4 +73,29 @@ export function setButtonBehaviour() {
     button.style.bottom = `${window.innerHeight - mouseY}px`;
     buttonMoved = true;
   }
+}
+function saveButtonState(buttonMovedState) {
+  //current time
+  const currentTime = new Date().getTime();
+  const stateObj = {
+    buttonMovedState: buttonMovedState,
+    time: currentTime,
+  };
+
+  localStorage.setItem("buttonMovedState-extension", JSON.stringify(stateObj));
+}
+
+function getButtonSavedState() {
+  let stateObj = localStorage.getItem("buttonMovedState-extension");
+  // if time is more than 1 day ago, return false and delete the state
+  if (stateObj) {
+    stateObj = JSON.parse(stateObj);
+    const currentTime = new Date().getTime();
+    if (currentTime - stateObj.time > 86400000) {
+      localStorage.removeItem("buttonMovedState-extension");
+      return false;
+    }
+    return stateObj.buttonMovedState;
+  }
+  return false;
 }
