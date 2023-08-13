@@ -1,4 +1,6 @@
-import { button, popup } from "./index.js";
+//setButtonBehaviour.js
+
+import { button, popup } from "../addButtonToWebsites.js";
 
 export function setButtonBehaviour() {
   let isLongPressing = false;
@@ -7,7 +9,6 @@ export function setButtonBehaviour() {
   let buttonMovedState = false; // track if the button is currently moved
 
   const savedButtonState = getButtonSavedState();
-  console.log(savedButtonState);
   if (savedButtonState === true) {
     button.style.right = "-40px";
     buttonMovedState = true;
@@ -87,11 +88,11 @@ function saveButtonState(buttonMovedState) {
 
 function getButtonSavedState() {
   let stateObj = localStorage.getItem("buttonMovedState-extension");
-  // if time is more than 1 day ago, return false and delete the state
+  // if time is more than 12hours ago, return false and delete the state
   if (stateObj) {
     stateObj = JSON.parse(stateObj);
     const currentTime = new Date().getTime();
-    if (currentTime - stateObj.time > 86400000) {
+    if (currentTime - stateObj.time > 86400000/2) {
       localStorage.removeItem("buttonMovedState-extension");
       return false;
     }
