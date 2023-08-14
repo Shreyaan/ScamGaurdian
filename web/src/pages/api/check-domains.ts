@@ -1,67 +1,54 @@
-// pages/api/check-domains.ts
+import { NextApiRequest, NextApiResponse } from 'next'
 
-import { NextApiRequest, NextApiResponse } from "next";
-import { Pool, QueryResult } from "pg";
-import 'dotenv/config'
+export default async function checkDomains(req: NextApiRequest, res: NextApiResponse) {
+  const { domains } = req.body
 
-let password = process.env.passwordblocklist;
+  // Call both APIs concurrently
+  const [blacklistResponse, whitelistResponse] = await Promise.all([
+    fetch('https://extension-orpin.vercel.app/api/check-domainsBlacklist', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ domains: domains.split('\n') }),
+    }),
+    fetch('https://extension-orpin.vercel.app/api/check-domainsWhitelist', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ domains: domains.split('\n') }),
+    }),
+  ])
 
-// PostgreSQL connection pool configuration
-const poolConfig = {
-  host: "ep-curly-forest-53978599-pooler.us-east-2.aws.neon.tech",
-  database: "neondb",
-  user: "Shreyaan",
-  password: password,
-  ssl: { rejectUnauthorized: false },
-};
+  // Parse the response data from JSON
+  const blacklistData = await blacklistResponse.json()
+  const whitelistData = await whitelistResponse.json()
 
-// Create the connection pool
-const pool = new Pool(poolConfig);
+  // Iterate over the domains, and combine the results of both APIs
+  const results = domains.split('\n').map((domain: any) => {
+    const blacklistItem = blacklistData.find((item: any) => item['domain-name'] === domain)
+    const whitelistItem = whitelistData.find((item: any) => item['domain-name'] === domain)
 
-// Define your domain interface to match the table schema
-interface Domain {
-  "domain-name": string;
-  "is-blacklisted": boolean;
-}
+    console.log(blacklistItem, whitelistItem);
+    
+   let isBlacklisted 
+    if(blacklistItem && whitelistItem){
+        isBlacklisted = blacklistItem['is-blacklisted'] && !whitelistItem['is-whitelisted']
+    }else if(blacklistItem){
+        isBlacklisted = blacklistItem['is-blacklisted']
+    }else if(whitelistItem){
+        isBlacklisted = !whitelistItem['is-whitelisted']
+    }else{
+        isBlacklisted = false
+    }
 
-// POST /api/check-domains
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Domain[] | {}>
-) {
-  try {
-    const { domains }: { domains: string[] } = req.body;
+    return {
+      domainName: domain,
+      isBlacklisted,
+    }
+  })
 
-    // Use a client from the connection pool
-    const client = await pool.connect();
-
-    // Generate a string with placeholders for the domains
-    const domainPlaceholders = domains.map((_, index) => `$${index + 1}`).join(",");
-
-    // Create an array with domain names and their corresponding indices
-    const indexedDomains = domains.map((domain, index) => ({
-      name: domain,
-      index: index + 1,
-    }));
-
-    // Execute the SELECT query with the given domains and order by the original indices
-    const result: QueryResult<Domain> = await client.query(
-      `
-      SELECT d."domain-name", COALESCE(b."is-blacklisted", false) as "is-blacklisted"
-      FROM unnest(ARRAY[${domainPlaceholders}]::text[]) WITH ORDINALITY AS d("domain-name", index)
-      LEFT JOIN domains AS b ON LOWER(d."domain-name") = LOWER(b."domain-name")
-      ORDER BY d.index
-      `,
-      indexedDomains.map((domain) => domain.name)
-    );
-
-    // Release the client back to the pool
-    client.release();
-
-    // Send the query result as the API response
-    res.status(200).json(result.rows);
-  } catch (error) {
-    console.error("Error fetching domains:", error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
+  // Send the combined results
+  res.status(200).json(results)
 }

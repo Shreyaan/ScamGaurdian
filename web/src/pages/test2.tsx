@@ -7,7 +7,7 @@ export default function DomainChecker() {
 
   const handleCheckDomains = async () => {
     try {
-      const response = await fetch('/api/check-domains', {
+      const response = await fetch('/api/check-domainsBlacklist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
