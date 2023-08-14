@@ -2,7 +2,6 @@ import { generatePopUpHTML } from "./DOM_Functions/generatePopUpHTML.js";
 import { getVendorInfo } from "./helper/getVendorInfo.js";
 import { createButton, createPopup } from "./DOM_Functions/createElements.js";
 import { appendElementsToBody } from "./helper/appendElementsToBody.js";
-import { injectCSS } from "./DOM_Functions/cssStyles.js";
 import { setButtonBehaviour } from "./DOM_Functions/setButtonBehaviour.js";
 
 export let button = createButton();
@@ -18,7 +17,6 @@ export function addButtonToWebsites() {
       if (data) {
         if (data.risks.length > 0 || data.tips.length > 0) {
           appendElementsToBody(button, popup);
-          injectCSS();
           setButtonBehaviour();
           popup.innerHTML = generatePopUpHTML(vendorInfo);
         }
