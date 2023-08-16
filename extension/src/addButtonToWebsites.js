@@ -15,7 +15,7 @@ export function addButtonToWebsites() {
     .then((data) => {
       vendorInfo = data;
       if (data) {
-        if (data.risks.length > 0 || data.tips.length > 0) {
+        if (data?.risks?.length > 0 || data?.tips?.length > 0) {
           appendElementsToBody(button, popup);
           setButtonBehaviour();
           popup.innerHTML = generatePopUpHTML(vendorInfo);
