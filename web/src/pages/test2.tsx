@@ -28,7 +28,7 @@ export default function DomainChecker() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Domain Checker</h1>
+      <h1 className="text-3xl font-bold mb-4">Domain Checker - blacklist only</h1>
       <div className="mb-4">
         <textarea
           className="w-full h-40 p-2 border border-gray-300 rounded"

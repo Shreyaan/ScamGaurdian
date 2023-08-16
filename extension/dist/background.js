@@ -1,18 +1,15 @@
 chrome.runtime.onInstalled.addListener(() => {
-    chrome.action.setBadgeBackgroundColor({color: '#4688F1'});
-    chrome.action.setBadgeText({text: 'ON'});
+    chrome.contextMenus.create({
+      id: "scan-urls",
+      title: "Scan all URLs on this page",
+      contexts: ["page"],
+    });
   });
   
-  chrome.runtime.onMessage.addListener(
-      function(request, sender, sendResponse) {
-          if (request.msg === "toggle_popup") {
-              chrome.action.getPopup({}, function(popup) {
-                  if (popup === "") {
-                      chrome.action.setPopup({popup: "popup.html"});
-                  } else {
-                      chrome.action.setPopup({popup: ""});
-                  }
-              });
-          }
-      }
-  );
+  chrome.contextMenus.onClicked.addListener((info, tab) => {
+    if (info.menuItemId === "scan-urls") {
+      chrome.tabs.sendMessage(tab.id, {
+        message: "scan_urls",
+      });
+    }
+  });
