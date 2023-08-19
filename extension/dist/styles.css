@@ -137,14 +137,6 @@
   /* background: #0f69d2; */
 }
 
-.scamAccordian label:hover {
-  /* color: #1c71d2; */
-}
-
-.scamAccordian input:checked + label {
-  /* color: #0f69d2; */
-}
-
 .scamAccordian input:checked + label::after {
   content: "🡱";
   line-height: 1.2em;
