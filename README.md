@@ -31,7 +31,9 @@ To install ScamGuardian, follow the steps below:
 
 ScamGuardian is built using the following technologies:
 
-- Hosting: The landing page and API are hosted on Vercel, a cloud platform known for its seamless deployment and scalability. This ensures that the application is fast, reliable, and easily accessible to users.
+- Hosting: The landing page and API are hosted on Vercel, ensuring fast and reliable deployment. The Postgres database, which contains ~8,112,000 blacklisted domains and ~675,950 domains in the safelist, is hosted on Neon, providing secure storage for the application's data.
+
+
 
 - Database: The application utilizes a PostgreSQL database hosted on Neon. This provides a robust and secure storage solution for the data required by the extension.
 
@@ -60,4 +62,4 @@ Clicking the "Scan All URLs" button triggers a request in the form of an array t
 
 ---
 
-For more information and to download the ScamGuardian extension, please visit the [ScamGuardian GitHub repository](https://github.com/Shreyaan/ScamGaurdian).
+For more information and to download the ScamGuardian extension, please visit the [ScamGuardian GitHub repository](https://github.com/Shreyaan/ScamGaurdian). The database utilized by ScamGuardian contains approximately 8,112,000 domains in the blacklist and around 675,950 domains in the safelist. although modified alot the inital data is from https://github.com/T145/black-mirror
