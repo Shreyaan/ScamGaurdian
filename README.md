@@ -35,11 +35,12 @@ ScamGuardian is built using the following technologies:
 
 - Database: The application utilizes a PostgreSQL database hosted on Neon. This provides a robust and secure storage solution for the data required by the extension.
 
-- Frontend: The landing page is developed using HTML, CSS, JavaScript, React, Next.js, and Tailwind CSS. These technologies enable a responsive and user-friendly interface for users to access the educational resources.
+- Frontend: The landing page is developed using HTML, CSS, Typescript, React, Next.js, and Tailwind CSS. These technologies enable a responsive and user-friendly interface for users to access the educational resources.
 
-- APIs: The APIs are built using Next.js, JavaScript, and PostgreSQL. These APIs handle requests from the extension and provide the necessary data for vendor details and URL scanning.
+- APIs: The APIs are built using Next.js, Typescript, and PostgreSQL. These APIs handle requests from the extension and provide the necessary data for vendor details and URL scanning.
 
 - Extension: The extension itself is developed using JavaScript, HTML, CSS, and Webpack. These technologies allow for the seamless integration of ScamGuardian with the user's browser interface.
+Webpack is used to bundle the code.
 
 - Code Management: GitHub is utilized for code storage, collaboration, and version control. GitHub Actions are employed to automate the deployment process, ensuring that users can easily access the latest version of the extension.
 
