@@ -101,7 +101,7 @@
   width: 100%;
 }
 
-.accordion {
+.scamAccordian {
   /* border: 1px solid black; */
   position: relative;
   margin-top: 5em;
@@ -109,11 +109,11 @@
   margin: auto;
 }
 
-.accordion input[name="panel"] {
+.scamAccordian input[name="panel"] {
   display: none;
 }
 
-.accordion label {
+.scamAccordian label {
   position: relative;
   display: block;
   padding: 2%;
@@ -124,7 +124,7 @@
   transition: all 0.4s cubic-bezier(0.865, 0.14, 0.095, 0.87);
 }
 
-.accordion label::after {
+.scamAccordian label::after {
   /* border: 2px solid green; */
   content: "🡳";
   position: absolute;
@@ -137,20 +137,12 @@
   /* background: #0f69d2; */
 }
 
-.accordion label:hover {
-  /* color: #1c71d2; */
-}
-
-.accordion input:checked + label {
-  /* color: #0f69d2; */
-}
-
-.accordion input:checked + label::after {
+.scamAccordian input:checked + label::after {
   content: "🡱";
   line-height: 1.2em;
 }
 
-.accordion .accordion-content {
+.scamAccordian .scamAccordian-content {
   overflow: hidden;
   height: 0px;
   /* display: none; */
@@ -159,12 +151,13 @@
   transition: all 0.4s cubic-bezier(0.865, 0.14, 0.095, 0.87);
 }
 
-.accordion .accordion-content .accordion-body {
+.scamAccordian .scamAccordian-content .scamAccordian-body {
   font-size: 0.825em;
   line-height: 1.4em;
 }
 
-input[name="panel"]:checked ~ .accordion-content.accordion-content-small {
+input[name="panel"]:checked
+  ~ .scamAccordian-content.scamAccordian-content-small {
   height: 10%;
 }
 
@@ -172,6 +165,6 @@ input[name="panel"]:checked ~ .accordion-content.accordion-content-small {
   margin-bottom: 1rem;
 }
 
-.accordion-content {
+.scamAccordian-content {
   border: 1px solid gray;
 }

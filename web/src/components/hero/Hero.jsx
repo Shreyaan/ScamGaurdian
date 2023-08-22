@@ -17,7 +17,7 @@ const Hero = () => {
         </div>
         <div className="mt-5">
           <Link
-            href="#"
+            href="https://github.com/Shreyaan/ScamGaurdian#installation"
             className="bg-black text-white p-2 font-semibold cursor-pointer"
           >
             Download Extension
