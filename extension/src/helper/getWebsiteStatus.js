@@ -1,4 +1,4 @@
-export async function getWebsiteStatus(hostname) {
+export async function getWebsiteBlacklsitStatus(hostname) {
   let data = await fetch(
     "https://extension-orpin.vercel.app/api/check-domains",
     {
