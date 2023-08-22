@@ -1,17 +1,22 @@
 import React from "react";
-import Link from 'next/link'
+import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <nav className="bg-black text-white flex justify-between p-3 sticky top-0 z-50">
+    <nav className="bg-black text-white hidden md:flex justify-between p-3 z-50 fixed w-full">
       <h1 className="font-bold text-2xl font-sans ml-2">Scam Guardian</h1>
 
-      <Link
-        href="https://github.com/Shreyaan/ScamGaurdian#installation"
-        className="mr-2 bg-blue-600 bg-opacity-100 p-2 hover:scale-95 cursor-pointer duration-75"
-      >
-        Download Extension
-      </Link>
+      <div className="links gap-x-16 items-center flex ">
+        <Link href="#" className="text-white text-center text-lg font-semibold">
+          Contact Us
+        </Link>
+        <Link
+          href="https://github.com/Shreyaan/ScamGaurdian#installation"
+          className="mr-2 bg-[#1258AA] bg-opacity-100 py-2 px-5 hover:scale-95 cursor-pointer duration-75 rounded-lg"
+        >
+          Download Extension
+        </Link>
+      </div>
     </nav>
   );
 };

@@ -8,6 +8,11 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
+
+/* html {
+  background: #dfdfdf;
+} */
+
 *::selection {
   color: white;
   background-color: #0f69d2;
@@ -15,6 +20,7 @@
 
 /* ===== Scrollbar CSS ===== */
 /* Firefox */
+/* =================================== */
 * {
   scrollbar-width: auto;
   scrollbar-color: #0f69d2 #ffffff;
@@ -39,3 +45,7 @@ a.disabled {
   pointer-events: none;
   cursor: default;
 }
+
+/* .textContainer {
+  background: linear-gradient(92deg, #1258aa 0%, rgba(3, 115, 243, 0) 100%);
+} */

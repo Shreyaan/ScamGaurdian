@@ -7,17 +7,31 @@ import datas from "./data";
 const NewsArticle = () => {
   console.log(datas);
   return (
-    <article className="container flex translate-y-32 gap-7 p-5 mb-5 ">
+    <article className="flex md:flex-row flex-col justify-start gap-7 p-3 mb-5 translate-y-12">
       {datas.map((data, key) => {
         return (
           <div
-            className="news bg-black text-white p-4 rounded-sm"
+            className="news bg-black text-white p-6 rounded-xl min-w-min"
             key={data.id}
           >
-            <img src={data.imageSrc} alt="img" />
-            <Link href={data.link} className="underline underline-offset-1">
+            <img src={data.imageSrc} alt="img" className="" />
+            <Link href={data.link} className="">
               {data.title}
             </Link>
+
+            <svg
+              width="23"
+              height="18"
+              viewBox="0 0 23 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="md:hidden"
+            >
+              <path
+                d="M11.7604 17.8509L22.6847 9.6195C22.7822 9.54601 22.8616 9.44913 22.9164 9.33689C22.9712 9.22466 22.9999 9.10028 23 8.97407V8.97217C22.9997 8.84548 22.9708 8.72069 22.9155 8.60816C22.8603 8.49563 22.7803 8.3986 22.6823 8.32516L11.758 0.146815C11.645 0.0622676 11.5122 0.0121409 11.3739 0.00194163C11.2357 -0.00825766 11.0975 0.0218655 10.9745 0.089001C10.8513 0.155765 10.748 0.257046 10.6759 0.381688C10.6039 0.506329 10.5659 0.649494 10.5662 0.795409V4.64432L0.754428 4.644C0.655319 4.64396 0.557174 4.66449 0.465605 4.70443C0.374036 4.74436 0.29084 4.80292 0.220773 4.87674C0.150706 4.95056 0.0951429 5.03821 0.057261 5.13466C0.0193791 5.23112 -7.8615e-05 5.33449 2.38712e-07 5.43887L0.000300045 12.5601C0.000260625 12.6645 0.0197554 12.7679 0.0576701 12.8644C0.0955847 12.9608 0.151176 13.0485 0.221267 13.1223C0.291358 13.1961 0.374574 13.2546 0.46616 13.2946C0.557745 13.3345 0.655905 13.355 0.755028 13.355H10.5659V17.2052C10.5659 17.5021 10.7249 17.7748 10.9757 17.9119C11.0991 17.9789 11.2377 18.0086 11.3762 17.9978C11.5146 17.9871 11.6476 17.9362 11.7604 17.8509Z"
+                fill="white"
+              />
+            </svg>
           </div>
         );
       })}

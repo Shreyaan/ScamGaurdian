@@ -16,7 +16,7 @@ function App() {
       <Info />
       <Steps />
       <Pros />
-      {/* <ReportsScam /> */}
+      <ReportsScam />
       <Footer />
     </>
   );

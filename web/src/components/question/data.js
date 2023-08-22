@@ -22,17 +22,17 @@ const reportData = [
   {
     id: 1,
     country: "United States",
-    authority: "FTC",
+    authority: ["FTC", "BBB", "Internet Crime Complaint Center (IC3)"],
   },
   {
     id: 2,
     country: "Canada",
-    authority: "Anti Fraud Center",
+    authority: ["Anti Fraud Center", "Competition Bureau Canada"],
   },
   {
     id: 3,
     country: "India",
-    authority: "Cyber Crime Portal",
+    authority: ["Cyber Crime Portal"],
   },
 ];
 
