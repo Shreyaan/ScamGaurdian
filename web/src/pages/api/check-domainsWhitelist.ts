@@ -45,11 +45,10 @@ export default async function handler(
     // Execute the SELECT query with the given domains and order by the original indices
     const result: QueryResult<Domain> = await client.query(
       `SELECT d."domain-name", COALESCE(b."is-whitelisted", false) as "is-whitelisted"
-      FROM (
-        SELECT UNNEST(ARRAY[${domainPlaceholders}]::text[]) AS "domain-name", index
-      ) AS d
+      FROM unnest(ARRAY[${domainPlaceholders}]::text[]) AS d("domain-name")
       LEFT JOIN domains AS b ON d."domain-name" = b."domain-name"
-      ORDER BY d.index;`,
+      ORDER BY d."domain-name";
+      `,
       indexedDomains.map((domain) => domain.name)
     );
 
