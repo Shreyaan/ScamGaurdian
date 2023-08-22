@@ -2,7 +2,7 @@
 
 import { NextApiRequest, NextApiResponse } from "next";
 import { Pool, QueryResult } from "pg";
-import 'dotenv/config'
+import "dotenv/config";
 
 let password = process.env.passwordblocklist;
 
@@ -36,7 +36,9 @@ export default async function handler(
     const client = await pool.connect();
 
     // Generate a string with placeholders for the domains
-    const domainPlaceholders = domains.map((_, index) => `$${index + 1}`).join(",");
+    const domainPlaceholders = domains
+      .map((_, index) => `$${index + 1}`)
+      .join(",");
 
     // Create an array with domain names and their corresponding indices
     const indexedDomains = domains.map((domain, index) => ({
@@ -48,9 +50,11 @@ export default async function handler(
     const result: QueryResult<Domain> = await client.query(
       `
       SELECT d."domain-name", COALESCE(b."is-blacklisted", false) as "is-blacklisted"
-      FROM unnest(ARRAY[${domainPlaceholders}]::text[]) WITH ORDINALITY AS d("domain-name", index)
-      LEFT JOIN domains AS b ON LOWER(d."domain-name") = LOWER(b."domain-name")
-      ORDER BY d.index
+      FROM (
+        SELECT UNNEST(ARRAY[${domainPlaceholders}]::text[]) AS "domain-name"
+      ) AS d
+      LEFT JOIN domains AS b ON d."domain-name" = b."domain-name"
+      ORDER BY d."domain-name";
       `,
       indexedDomains.map((domain) => domain.name)
     );
