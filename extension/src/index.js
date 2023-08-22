@@ -1,5 +1,7 @@
 import { addButtonToWebsites } from "./addButtonToWebsites.js";
 import { scanAllUrls } from "./scanAllUrls.js";
+import "toastify-js/src/toastify.css"
+
 
 addButtonToWebsites();
 
