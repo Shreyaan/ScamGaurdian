@@ -4,8 +4,7 @@ import { createButton, createPopup } from "./DOM_Functions/createElements.js";
 import { appendElementsToBody } from "./helper/appendElementsToBody.js";
 import { setButtonBehaviour } from "./DOM_Functions/setButtonBehaviour.js";
 import { getWebsiteBlacklsitStatus } from "./helper/getWebsiteStatus.js";
-import Toastify from 'toastify-js'
-
+import Toastify from "toastify-js";
 
 export let button = createButton();
 export let popup = createPopup();
@@ -28,13 +27,11 @@ export async function addButtonToWebsites() {
       stopOnFocus: true, // Prevents dismissing of toast on hover
       style: {
         background: "linear-gradient(to right, #ff3b3f, #ff757a)",
-        width:"25%"
+        width: "25%",
       },
-      onClick: function(){} // Callback after click
+      onClick: function () {}, // Callback after click
     }).showToast();
   }
-
-
 
   let vendorData = await getVendorInfo(currentUrl);
   if (vendorData) {
