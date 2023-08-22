@@ -2,7 +2,7 @@
 
 import { NextApiRequest, NextApiResponse } from "next";
 import { Pool, QueryResult } from "pg";
-import 'dotenv/config'
+import "dotenv/config";
 
 let password = process.env.passwordvendor;
 
@@ -32,7 +32,9 @@ export default async function handler(
     const client = await pool.connect();
 
     // Generate a string with placeholders for the domains
-    const domainPlaceholders = domains.map((_, index) => `$${index + 1}`).join(",");
+    const domainPlaceholders = domains
+      .map((_, index) => `$${index + 1}`)
+      .join(",");
 
     // Create an array with domain names and their corresponding indices
     const indexedDomains = domains.map((domain, index) => ({
@@ -42,11 +44,10 @@ export default async function handler(
 
     // Execute the SELECT query with the given domains and order by the original indices
     const result: QueryResult<Domain> = await client.query(
-      `
-      SELECT d."domain-name", COALESCE(b."is-whitelisted", false) as "is-whitelisted"
-      FROM unnest(ARRAY[${domainPlaceholders}]::text[]) WITH ORDINALITY AS d("domain-name", index)
-      LEFT JOIN domains AS b ON LOWER(d."domain-name") = LOWER(b."domain-name")
-      ORDER BY d.index
+      `SELECT d."domain-name", COALESCE(b."is-whitelisted", false) as "is-whitelisted"
+      FROM unnest(ARRAY[${domainPlaceholders}]::text[]) AS d("domain-name")
+      LEFT JOIN domains AS b ON d."domain-name" = b."domain-name"
+      ORDER BY d."domain-name";
       `,
       indexedDomains.map((domain) => domain.name)
     );
