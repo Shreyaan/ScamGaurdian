@@ -44,9 +44,12 @@ export default async function handler(
     const result: QueryResult<Domain> = await client.query(
       `
       SELECT d."domain-name", COALESCE(b."is-whitelisted", false) as "is-whitelisted"
-      FROM unnest(ARRAY[${domainPlaceholders}]::text[]) WITH ORDINALITY AS d("domain-name", index)
-      LEFT JOIN domains AS b ON LOWER(d."domain-name") = LOWER(b."domain-name")
-      ORDER BY d.index
+      FROM (
+        SELECT UNNEST(ARRAY[${domainPlaceholders}]::text[]) WITH ORDINALITY AS d("domain-name", index)
+      ) AS d
+      LEFT JOIN domains AS b ON d."domain-name" = b."domain-name"
+      ORDER BY d.index;
+      
       `,
       indexedDomains.map((domain) => domain.name)
     );
