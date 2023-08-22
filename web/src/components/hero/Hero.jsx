@@ -16,9 +16,12 @@ const Hero = () => {
         </p>
 
         <div className="btn mt-6 hidden md:flex md:gap-4">
-          <a href="#" className="bg-black text-white py-2 px-4 rounded-lg">
+          <Link
+            href="https://github.com/Shreyaan/ScamGaurdian#installation"
+            className="bg-black text-white py-2 px-4 rounded-lg"
+          >
             Download Extension
-          </a>
+          </Link>
           <a
             href="#"
             className="border border-slate-200 text-white py-2 px-4 rounded-lg"
