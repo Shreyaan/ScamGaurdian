@@ -5,7 +5,7 @@ import Link from "next/link";
 import datas from "./data";
 
 const NewsArticle = () => {
-  console.log(datas);
+  // console.log(datas);
   return (
     <article className="flex md:flex-row flex-col justify-start gap-7 p-3 mb-5 translate-y-12">
       {datas.map((data, key) => {

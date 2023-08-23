@@ -2,23 +2,28 @@ import React from "react";
 
 const Steps = () => {
   return (
-    <div className="hidden  bg-[#fff] shadow-xl mb-20 mt-20 text-black max-w-2xl md:flex flex-col items-center justify-center p-6 py-16 ">
-      <div className="textContainer max-w-sm">
-        <h3 className="text-3xl font-bold mb-1">How Extension Works ?</h3>
-        <p className="my-3 before:content-['1:'] before:font-bold">
-          {" "}
-          Download Chrome extension
-        </p>
-        <p className="my-3 before:content-['2:'] before:font-bold">
-          {" "}
-          Enable permissions.
-        </p>
-        <p className="my-3 before:content-['3:'] before:font-bold">
-          When you go to a shopping site, click our extension in the middle of
-          the right side of your screen.
-        </p>
+    <div className="hidden md:flex bg-white rounded-lg p-8 mb-20 mt-20 gap-5 text-black items-center">
+      <div className="textContainer p-6 px-28">
+        <h3 className="text-4xl font-bold mb-4">How Extension Works ?</h3>
+        <ul className="list-decimal pl-6 space-y-3 text-xl">
+          <li>Download the Chrome extension.</li>
+          <li>Enable necessary permissions.</li>
+          <li>
+            When visiting a shopping site, click our extension on the right side
+            of your screen.
+          </li>
+        </ul>
       </div>
-      <div className="video"></div>
+      <div className="video w-full">
+        <iframe
+          width="500"
+          height="500"
+          src="/assets/video.mp4"
+          title="Scam Guardian"
+          frameborder="0"
+          style={{ width: "100%" }}
+        ></iframe>
+      </div>
     </div>
   );
 };

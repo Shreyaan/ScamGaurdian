@@ -7,7 +7,10 @@ const Navbar = () => {
       <h1 className="font-bold text-2xl font-sans ml-2">Scam Guardian</h1>
 
       <div className="links gap-x-16 items-center flex ">
-        <Link href="#" className="text-white text-center text-lg font-semibold">
+        <Link
+          href="/"
+          className="text-white text-center text-lg font-semibold hover:border hover:border-slate-200 px-4 py-1 duration-150 hover:animate-pulse rounded-md"
+        >
           Contact Us
         </Link>
         <Link

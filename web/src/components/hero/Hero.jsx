@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-
+import { AiOutlineClose } from "react-icons/ai";
 const Hero = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <main className="flex md:flex-row flex-col-reverse justify-center items-center md:pt-10">
-      <div className="textContainer flex-1 p-7 py-10 md:py-[4.7rem] bg-gradient-to-r from-[#2b5f99] to-[#1258AA] text-white">
+      <div className="textContainer flex-1 p-7 py-10 md:py-[4.7rem] bg-[#1258AA] text-white">
         <h1 className="md:text-5xl text-3xl font-bold mb-4">
           Become Smarter So You Can Shop Safe
         </h1>
@@ -23,8 +33,8 @@ const Hero = () => {
             Download Extension
           </Link>
           <a
-            href="#"
-            className="border border-slate-200 text-white py-2 px-4 rounded-lg"
+            className="border border-slate-200 text-white py-2 px-4 rounded-lg cursor-pointer"
+            onClick={openModal}
           >
             Watch Demo
           </a>
@@ -35,6 +45,31 @@ const Hero = () => {
             Extension
           </p>
         </div>
+        {/* Modal Open content */}
+        {isModalOpen && (
+          <div className="fixed top-0 text-black left-0 w-full h-full flex flex-col items-center justify-center bg-black bg-opacity-50 z-[100] ">
+            <div className="bg-[#DFDFDF] p-4 w-full max-w-4xl flex justify-between items-center">
+              <h2 className="text-4xl font-medium mb-2 text-[#0F69D2]">
+                How Our Extension Works
+              </h2>
+              <AiOutlineClose
+                onClick={closeModal}
+                className="text-4xl cursor-pointer"
+              />
+            </div>
+            <div className="video">
+              <iframe
+                width="896"
+                height="450"
+                src="/assets/video.mp4"
+                title="Scam Guardian"
+                allowFullScreen
+                loop
+                muted
+              ></iframe>
+            </div>
+          </div>
+        )}
       </div>
       <div className="imgContainer flex-1">
         <img
