@@ -61,7 +61,7 @@ const Hero = () => {
               <iframe
                 width="896"
                 height="450"
-                src="/assets/Demo Video.mp4"
+                src="/assets/How extension works.mp4"
                 title="Scam Guardian"
                 allowFullScreen
                 loop
