@@ -3,10 +3,10 @@ import Toastify from "toastify-js";
 export function showToast(text, background, duration) {
   let bg
   if(background==="alert"){
-    bg = "linear-gradient(to right, #ff3b3f, #ff757a)"
+    bg = "#DE000B"
   }
   else if(background==="success"){
-    bg = "linear-gradient(to right, #00b09b, #96c93d)"
+    bg = "#009D00"
   }
   else{
     bg = background
