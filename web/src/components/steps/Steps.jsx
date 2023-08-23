@@ -18,7 +18,7 @@ const Steps = () => {
         <iframe
           width="500"
           height="500"
-          src="/assets/video.mp4"
+          src="/assets/How extension works.mp4"
           title="Scam Guardian"
           frameborder="0"
           style={{ width: "100%" }}
