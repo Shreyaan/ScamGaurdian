@@ -2,7 +2,6 @@
 
 # ScamGuardian
 
-
 ScamGuardian is a website extension that aims to address the problems faced by internet users by monitoring their web activity and proactively protecting them from scams. The extension maintains a database of suspicious sites and warns users if they attempt to access a known scam site. Additionally, it provides educational resources to help users become more aware of common scams and protect themselves while using the internet.
 
 ## Features
@@ -10,6 +9,8 @@ ScamGuardian is a website extension that aims to address the problems faced by i
 - Educational Resources: The extension includes sidebars with educational content, risks, and tips related to the specific website and scenario that users are facing. This ensures that users are equipped with the necessary knowledge to identify and avoid potential scams.
 
 - URL Scanning: By right-clicking on a webpage, users can choose the "Scan All URLs on This Page" option. The extension then scans all the URLs on the page and checks if any of them are blacklisted. This feature helps users identify potentially harmful sites and protects them from falling victim to scams.
+
+- Suspicious Website Notification: The extension is designed to enhance your browsing safety. When you encounter a suspicious website, the extension will identify it and trigger an overlay. The overlay will promptly notify you of the potential threat. You will be given the choice to either leave the website immediately or to trust the website within the protective overlay.
 
 ## Installation
 
@@ -33,8 +34,6 @@ ScamGuardian is built using the following technologies:
 
 - Hosting: The landing page and API are hosted on Vercel, ensuring fast and reliable deployment. The Postgres database, which contains ~8,112,000 blacklisted domains and ~675,950 domains in the safelist, is hosted on Neon, providing secure storage for the application's data.
 
-
-
 - Database: The application utilizes a PostgreSQL database hosted on Neon. This provides a robust and secure storage solution for the data required by the extension.
 
 - Frontend: The landing page is developed using HTML, CSS, Typescript, React, Next.js, and Tailwind CSS. These technologies enable a responsive and user-friendly interface for users to access the educational resources.
@@ -52,7 +51,7 @@ Webpack is used to bundle the code.
 
 The ScamGuardian (SG) button is designed to enhance the user experience. If the button obscures any elements on a webpage, users can easily move it up or down to access the content without inconvenience. Additionally, users can double-press the SG button to temporarily hide it for 12 hours, ensuring unobstructed browsing.
 
-### Vendor Details
+#### Vendor Details
 
 When a user visits a website, the extension sends a request to the `/vendor?vendorName=${vendorName}` endpoint. This request is handled by a Next.js serverless API, which retrieves the relevant data from the PostgreSQL database. The API then responds with the necessary vendor details, which are displayed in the extension's popup. To optimize performance, the retrieved data is locally stored within the extension for a day, reducing the need for frequent requests.
 
@@ -60,6 +59,10 @@ When a user visits a website, the extension sends a request to the `/vendor?vend
 
 Clicking the "Scan All URLs" button triggers a request in the form of an array to the `/check-domains` API endpoint. This Next.js serverless API further calls two separate APIs: `/check-domainsBlacklist` and `/check-domainsWhitelist`. These APIs perform the necessary checks and comparisons, returning an array with the scan results. This allows users to efficiently scan multiple URLs and receive comprehensive feedback.
 
+### Scan Current Url
+
+When page loads, it triggers a request to the `/check-domains` API endpoint with current url. This Next.js serverless API further calls two separate APIs: `/check-domainsBlacklist` and `/check-domainsWhitelist`. These APIs perform the necessary checks and comparisons, returning an array with the scan result. If the website is blacklisted it shows a modal.
+
 ---
 
-For more information and to download the ScamGuardian extension, please visit the [ScamGuardian GitHub repository](https://github.com/Shreyaan/ScamGaurdian). The database utilized by ScamGuardian contains approximately 8,112,000 domains in the blacklist and around 675,950 domains in the safelist. although modified alot the inital data is from https://github.com/T145/black-mirror
+For more information and to download the ScamGuardian extension, please visit the [ScamGuardian GitHub repository](https://github.com/Shreyaan/ScamGaurdian) and [ScamGuardian Website](https://extension-orpin.vercel.app). The database utilized by ScamGuardian contains approximately 8,112,000 domains in the blacklist and around 675,950 domains in the safelist. although modified alot the inital data is from <https://github.com/T145/black-mirror>
