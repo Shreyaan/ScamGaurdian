@@ -30,12 +30,12 @@ export function generateModalHTML(hostname) {
         </p>
         <p>${hostname}</p>
         <div class="scamgaudian_bottom_btns">
-          <div class="scamgaudian-btn_stay" id="scamgaurdian_stay_btn">Stay</div>
+          <div class="scamgaudian-btn_stay" id="scamgaurdian_stay_btn">Trust Website</div>
           <div
           class="scamgaudian-btn-Leave"
           onclick="window.location.href = "https://extension-orpin.vercel.app";"
         >
-          <span>Leave website</span>
+          <span>Leave Website</span>
         </div>
         </div>
       </div>

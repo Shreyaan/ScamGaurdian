@@ -8,12 +8,13 @@ export async function currentWebsiteCheck() {
 
   let hostname = new URL(currentUrl).hostname;
 
+  let shouldShowModal = localStorage.getItem("scamgaurdian_trust_website");
+  if (shouldShowModal) {
+    return;
+  }
+
   let blacklistStatus = await getWebsiteBlacklsitStatus(hostname);
   if (blacklistStatus) {
-  //  let shouldShowModal = localStorage.getItem("scamgaurdian_stay_btn");
-  //   if (shouldShowModal) {
-  //     return;
-  //   }
     warningModal.innerHTML = generateModalHTML(hostname);
     document.body.appendChild(warningModal);
 
@@ -28,7 +29,7 @@ export async function currentWebsiteCheck() {
     const StayBtn = document.getElementById("scamgaurdian_stay_btn");
 
     StayBtn.addEventListener("click", () => {
-      localStorage.setItem("scamgaurdian_stay_btn", "true");
+      localStorage.setItem("scamgaurdian_trust_website", "true");
       const scrollY = document.body.style.top;
       document.body.style.position = "";
       document.body.style.top = "";
