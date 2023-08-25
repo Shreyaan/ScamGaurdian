@@ -100,3 +100,10 @@ function getButtonSavedState() {
   }
   return false;
 }
+
+let closebtn = document.getElementById("scamGaurdianPopupClose");
+if(closebtn){
+  closebtn.addEventListener("click", function () {
+    popup.style.display = "none";
+  });
+}
