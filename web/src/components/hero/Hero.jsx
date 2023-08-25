@@ -59,8 +59,8 @@ const Hero = () => {
             </div>
             <div className="video">
               <iframe
-                width="749"
-                height="499"
+                width="800"
+                height="500"
                 src="https://www.youtube.com/embed/jN5BWo2vmdU"
                 title="How extension works (Scam Guardian)"
                 frameborder="0"
