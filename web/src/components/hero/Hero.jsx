@@ -59,13 +59,13 @@ const Hero = () => {
             </div>
             <div className="video">
               <iframe
-                width="896"
-                height="450"
-                src="/assets/How extension works.mp4"
-                title="Scam Guardian"
-                allowFullScreen
-                loop
-                muted
+                width="749"
+                height="499"
+                src="https://www.youtube.com/embed/jN5BWo2vmdU"
+                title="How extension works (Scam Guardian)"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
               ></iframe>
             </div>
           </div>

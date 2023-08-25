@@ -16,12 +16,13 @@ const Steps = () => {
       </div>
       <div className="video w-full">
         <iframe
-          width="500"
-          height="500"
-          src="/assets/Demo Video.mp4"
-          title="Scam Guardian"
+          width="749"
+          height="499"
+          src="https://www.youtube.com/embed/4TGtFWk7xoA"
+          title="Demo Video for Scam Guardian"
           frameborder="0"
-          style={{ width: "100%" }}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
         ></iframe>
       </div>
     </div>
