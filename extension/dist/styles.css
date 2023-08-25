@@ -121,20 +121,23 @@
 
 .scamAccordian label::after {
   /* border: 2px solid green; */
-  content: "🡳";
+  content: url('data:image/svg+xml;charset=utf-8,<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6V18M12 18L7 13M12 18L17 13" stroke="%23000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+
   position: absolute;
   right: 1em;
   width: 1em;
-  /* height: 1em; */
+  height: 1em;
+  max-height: 1em;
   color: black;
   text-align: center;
   border-radius: 50%;
+
   /* background: #0f69d2; */
 }
 
 .scamAccordian input:checked + label::after {
-  content: "🡱";
   line-height: 1.2em;
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M12 6V18M12 6L7 11M12 6L17 11' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
 .scamAccordian .scamAccordian-content {
