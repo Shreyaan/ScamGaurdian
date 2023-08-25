@@ -41,17 +41,20 @@
   background: #0f69d2;
   width: 100%;
   color: white;
-  text-align: center;
   font-weight: 700;
   font-size: 80%;
   padding: 2%;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
 #myExtensionPopup section {
   position: relative;
   overflow: hidden;
   color: black;
-  background-color: white;
+  background: rgba(15, 105, 210, 0.05);
 }
 
 #myExtensionPopup .listItem {
@@ -79,16 +82,12 @@
 
 #myExtensionPopup .tipsText {
   font-size: 1.5rem;
-  color: green;
   font-weight: 600;
-  text-decoration: underline;
 }
 
 #myExtensionPopup .riskText {
   font-size: 1.5rem;
-  color: red;
   font-weight: 600;
-  text-decoration: underline;
 }
 
 #myExtensionPopup .border {
@@ -112,15 +111,18 @@
   position: relative;
   display: block;
   padding: 2%;
-  border: 1px solid #87cefa;
-  background-color: #87cefa;
+  border: 1px solid #0f69d2;
+  background: rgba(15, 105, 210, 0.05);
   font-size: 1em;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.865, 0.14, 0.095, 0.87);
+  transition: all 0.4s ease-in;
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .scamAccordian label::after {
-  /* border: 2px solid green; */
   content: url('data:image/svg+xml;charset=utf-8,<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 6V18M12 18L7 13M12 18L17 13" stroke="%23000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
 
   position: absolute;
@@ -131,8 +133,6 @@
   color: black;
   text-align: center;
   border-radius: 50%;
-
-  /* background: #0f69d2; */
 }
 
 .scamAccordian input:checked + label::after {
@@ -146,7 +146,8 @@
   /* display: none; */
   position: relative;
   padding: 0 2%;
-  transition: all 0.4s cubic-bezier(0.865, 0.14, 0.095, 0.87);
+  /* transition: all 0.4s cubic-bezier(0.865, 0.14, 0.095, 0.87); */
+  border: none;
 }
 
 .scamAccordian .scamAccordian-content .scamAccordian-body {
@@ -157,6 +158,9 @@
 input[name="panel"]:checked
   ~ .scamAccordian-content.scamAccordian-content-small {
   height: 10%;
+  border-radius: 0.625rem;
+  border: 1px solid #1258aa;
+  background: rgba(15, 105, 210, 0.05);
 }
 
 .panels {
@@ -164,7 +168,9 @@ input[name="panel"]:checked
 }
 
 .scamAccordian-content {
-  border: 1px solid gray;
+  border: 1px solid #1258aa;
+  border-radius: 0.625rem;
+  border-top: 0;
 }
 
 .scamgaurdian-blocking {
