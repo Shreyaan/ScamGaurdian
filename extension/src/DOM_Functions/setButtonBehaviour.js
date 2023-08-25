@@ -74,6 +74,13 @@ export function setButtonBehaviour() {
     button.style.bottom = `${window.innerHeight - mouseY}px`;
     buttonMoved = true;
   }
+
+  let closebtn = document.getElementById("scamGaurdianPopupClose");
+  if (closebtn) {
+    closebtn.addEventListener("click", function () {
+      popup.style.display = "none";
+    });
+  }
 }
 function saveButtonState(buttonMovedState) {
   //current time
@@ -92,18 +99,11 @@ function getButtonSavedState() {
   if (stateObj) {
     stateObj = JSON.parse(stateObj);
     const currentTime = new Date().getTime();
-    if (currentTime - stateObj.time > 86400000/2) {
+    if (currentTime - stateObj.time > 86400000 / 2) {
       localStorage.removeItem("buttonMovedState-extension");
       return false;
     }
     return stateObj.buttonMovedState;
   }
   return false;
-}
-
-let closebtn = document.getElementById("scamGaurdianPopupClose");
-if(closebtn){
-  closebtn.addEventListener("click", function () {
-    popup.style.display = "none";
-  });
 }

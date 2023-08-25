@@ -15,8 +15,8 @@ export async function addButtonToWebsites() {
   if (vendorData) {
     if (vendorData?.risks?.length > 0 || vendorData?.tips?.length > 0) {
       appendElementsToBody(button, popup);
-      setButtonBehaviour();
       popup.innerHTML = generatePopUpHTML(vendorData);
+      setButtonBehaviour();
     }
   }
 }
