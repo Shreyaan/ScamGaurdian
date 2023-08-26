@@ -1,50 +1,76 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 export default function Home() {
-  const [domains, setDomains] = useState('')
-  const [results, setResults] = useState([])
+  const [domains, setDomains] = useState('');
+  const [results, setResults] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const checkDomains = async () => {
+    setIsLoading(true);
     const response = await fetch('/api/check-domains', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ domains }),
-    })
+    });
 
-    const data = await response.json()
-    setResults(data)
-  }
+    const data = await response.json();
+    setResults(data);
+    setIsLoading(false);
+  };
+
+  const clearResults = () => {
+    setResults([]);
+    setDomains('');
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <div className="flex flex-col items-center w-6/12">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
+        <h1 className="text-2xl font-bold mb-4">Domain Blacklist Checker</h1>
+        <p className="text-gray-600 mb-6">
+          Enter a list of domains below to check if they are blacklisted.
+        </p>
         <textarea
+          id="domains"
           value={domains}
           onChange={(e) => setDomains(e.target.value)}
-          className="w-full h-64 p-4 mb-4 bg-white border border-gray-300 rounded shadow appearance-none hover:border-gray-700"
-          placeholder="Enter domains separated by newlines"
+          className="w-full h-40 p-4 mb-4 bg-white border border-gray-300 rounded shadow-sm focus:outline-none focus:ring focus:border-blue-500"
+          placeholder="example.com
+anotherdomain.net"
         />
 
         <button
           onClick={checkDomains}
-          className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+          disabled={isLoading}
+          className={`w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-700 focus:outline-none ${
+            isLoading ? 'opacity-50 cursor-not-allowed' : ''
+          }`}
         >
-          Check Domains
+          {isLoading ? 'Checking...' : 'Check Domains'}
         </button>
 
         {results.length > 0 && (
-          <div className="w-full mt-4">
-            <h2 className="mb-4 text-lg font-bold text-center">Results:</h2>
+          <div className="mt-6">
+            <h2 className="text-lg font-semibold mb-4">Results:</h2>
             {results.map((item, index) => (
-              <div key={index} className="mb-2 text-center">
-                <span className="font-bold">{item.domainName}:</span> {item.isBlacklisted ? 'Blacklisted' : 'Not blacklisted'}
+              <div key={index} className="mb-2">
+                <span className={`font-semibold ${item.isBlacklisted ? 'text-red-600' : 'text-green-600'}`}>
+                  {item.domainName}:
+                </span>{' '}
+                {item.isBlacklisted ? 'Blacklisted' : 'Not blacklisted'}
               </div>
             ))}
+            <button
+              onClick={clearResults}
+              className="mt-4 text-blue-500 hover:underline focus:outline-none"
+            >
+              Clear Results
+            </button>
           </div>
         )}
       </div>
     </div>
-  )
+  );
 }
