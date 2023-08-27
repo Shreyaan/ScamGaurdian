@@ -73,7 +73,7 @@ const Hero = () => {
       </div>
       <div className="imgContainer flex-1">
         <img
-          src={"/assets/headerImg.png"}
+          src={"/assets/headerImg.jpeg"}
           alt="img"
           className="w-full h-auto max-h-[400px] object-fill"
         />
