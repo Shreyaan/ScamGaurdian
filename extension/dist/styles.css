@@ -103,6 +103,10 @@
   margin: auto;
 }
 
+#scamGaurdianPopupClose {
+  margin-left: 1rem;
+}
+
 .scamAccordian input[name="panel"] {
   display: none;
 }
