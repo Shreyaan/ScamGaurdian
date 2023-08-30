@@ -3,17 +3,19 @@ import { data } from "./data";
 
 const Pros = () => {
   return (
-    <div className="mt-8 p-3">
+    <div className="p-3">
       <h1 className="text-center font-bold text-4xl">Why Scam Guardian?</h1>
 
       <div className="flex flex-col md:flex-row justify-center gap-4 mt-8">
         {data.map((item) => (
           <div
             key={item.id}
-            className="card bg-[#fff] bg-opacity-10 border border-black flex flex-col justify-center p-5 max-w-md rounded-xl mb-4 md:mb-0"
+            className="card bg-[#fff] bg-opacity-10 border border-black flex flex-col items-center p-4 max-w-md rounded-xl mb-4 md:mb-0"
           >
             <h3 className="text-center text-xl font-semibold">{item.title}</h3>
-            <p className="text-justify mt-2">{item.content}</p>
+            <p className="md:text-center text-justify tracking-tight mt-2">
+              {item.content}
+            </p>
           </div>
         ))}
       </div>
