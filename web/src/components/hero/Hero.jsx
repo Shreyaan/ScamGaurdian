@@ -13,12 +13,12 @@ const Hero = () => {
   };
 
   return (
-    <main className="flex md:flex-row flex-col-reverse justify-center items-center md:pt-10">
-      <div className="textContainer flex-1 p-7 py-10 md:py-[4.7rem] bg-[#1258AA] text-white">
-        <h1 className="md:text-5xl text-3xl font-bold mb-4">
+    <main className="flex md:flex-row flex-col-reverse">
+      <div className="textContainer flex flex-col justify-center flex-1 p-5 px-8 bg-[#1258AA] text-white">
+        <h1 className="md:text-5xl text-3xl font-bold mb-4 tracking-normal text-left">
           Become Smarter So You Can Shop Safe
         </h1>
-        <p className="text-base max-w-2xl md:p-0 p-3 ">
+        <p className="text-base max-w-[350px] md:max-w-2xl tracking-normal text-left">
           The #1 method of protecting yourself from scams is by knowing what to
           look out for. Our <span className="font-bold">Chrome extension</span>{" "}
           proactively helps you learn what the risks are and what to do to
@@ -71,7 +71,7 @@ const Hero = () => {
           </div>
         )}
       </div>
-      <div className="imgContainer flex-1">
+      <div className="imgContainer flex flex-1">
         <img
           src={"/assets/headerImg.jpeg"}
           alt="img"

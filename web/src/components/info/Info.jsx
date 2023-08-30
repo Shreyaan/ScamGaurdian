@@ -2,15 +2,15 @@ import React from "react";
 
 const Info = () => {
   return (
-    <div className="mt-14 md:mt-28 flex flex-col md:flex-row relative mb-10">
+    <div className="mt-14 md:mt-28 flex flex-col items-center md:flex-row relative mb-2">
       <div className="img flex-1">
         <img
           src={"assets/section.png"}
           alt="img"
-          className="aspect-video  w-full"
+          className="w-full h-auto max-h-[450px] object-fill"
         />
       </div>
-      <div className="textContainer flex-1 flex flex-col justify-center md:h-[23rem] md:z-10 bg-[#DFDFDF] p-4 md:p-10 md:-translate-x-40  md:-mr-40 md:translate-y-10 ">
+      <div className="textContainer flex-1 flex flex-col justify-center md:h-[23rem] md:z-10 bg-[#DFDFDF] p-4 md:p-10 md:-translate-x-40  md:-mr-40 md:translate-y-0">
         <div className="text md:px-0 px-8">
           <h1 className="text-2xl md:text-4xl font-bold text-center md:text-right mb-2">
             Billions of dollars a year are stolen by scammers from people like

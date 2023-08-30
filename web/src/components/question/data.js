@@ -23,16 +23,26 @@ const reportData = [
     id: 1,
     country: "United States",
     authority: ["FTC", "BBB", "Internet Crime Complaint Center (IC3)"],
+    link: [
+      "https://reportfraud.ftc.gov/#/",
+      "https://www.bbb.org/scamtracker",
+      "https://www.ic3.gov/Home/ComplaintChoice",
+    ],
   },
   {
     id: 2,
     country: "Canada",
     authority: ["Anti Fraud Center", "Competition Bureau Canada"],
+    link: [
+      "https://www.antifraudcentre-centreantifraude.ca/report-signalez-eng.htm",
+      "https://ised-isde.canada.ca/site/competition-bureau-canada/en/competition-bureau-canada",
+    ],
   },
   {
     id: 3,
     country: "India",
     authority: ["Cyber Crime Portal"],
+    link: ["https://cybercrime.gov.in/"],
   },
 ];
 
